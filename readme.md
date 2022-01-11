@@ -47,20 +47,22 @@ git pull bk-award
 2. 本地创建数据库
 
    ```
-   CREATE DATABASE `bk-training-award-open` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+   CREATE DATABASE `bk-award-open` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
    ```
 
 3. 在项目根目录下创建`local_settings.py`，然后在`local_settings.py`添加数据库配置
 
    ```python
-   from config import APP_CODE
+   # -*- coding: utf-8 -*-
+   
+   from blueapps.patch.settings_open_saas import APP_CODE
    
    DATABASES = {
        "default": {
            "ENGINE": "django.db.backends.mysql",
            "NAME": APP_CODE,
-           "USER": "", #数据库用户名
-           "PASSWORD": "", #数据库密码
+           "USER": "", # 数据库用户名
+           "PASSWORD": "", # 数据库密码
            "HOST": "localhost",
            "PORT": "3306",
        },
@@ -75,11 +77,6 @@ git pull bk-award
    # 项目 APP_ID & APP_TOKEN (找项目负责人获取)
    APP_ID=xxxxxxxxxxxxx
    APP_TOKEN=xxxxxxxxxxxxx
-
-
-   + 在PyCharm中配置环境变量以及主机名
-
-   ![PyCharm配置环境变量](static/images/image-202111229321321908.png)
 
    + 配置Terminal和Python Console的环境变量
 
@@ -97,10 +94,16 @@ git pull bk-award
      macOS:
      export APP_ID=xxxx
      export APP_TOKEN=xxxx
+   
+   
+   + 在PyCharm中配置环境变量以及主机名
+
+   如下图所示
      ```
   ![set_environ_1](static/images/set_environ_1.png)
   ![set_environ_2](static/images/set_environ_2.png)
   ![set_environ_3](static/images/set_environ_3.png)
+
 5. 运行
 
    ```shell
@@ -124,10 +127,10 @@ git pull bk-award
 
    ```
    # 进入前端工作目录
-   cd frontend
+   cd frontend/desktop
    # 下载依赖
    npm i
-   # 运行项目
+   # 运行项目(后端服务保持启动)
    npm run dev
    ```
 
@@ -154,7 +157,7 @@ git pull bk-award
 
       ```
       git add .
-      git commit -m 提交信息
+      git commit -m "提交信息"
       git push origin
       ```
 
@@ -187,6 +190,7 @@ git pull bk-award
     .idea
     node_modules
     local_settings.py
+    venv
     ```
 
   - 配置`pre-commit`

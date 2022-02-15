@@ -86,7 +86,7 @@ TEMPLATES[0]["DIRS"] += (os.path.join(BASE_DIR, "static", "dist"),)
 # STATIC_VERSION_END
 STATIC_VERSION = "1.0"
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]  # noqa
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static/")]  # noqa
 
 # CELERY 开关，使用时请改为 True，修改项目目录下的 Procfile 文件，添加以下两行命令：
 # worker: python manage.py celery worker -l info
@@ -178,6 +178,6 @@ REST_FRAMEWORK = {
     # 自定义rest_framework异常处理,一般为rest_framework.exceptions.APIException
     'EXCEPTION_HANDLER': 'awards_apply.utils.exception_handler.custom_exception_handler',
     # 取消rest_framework API 调试页面
-    'DEFAULT_RENDERER_CLASSES':
-        ('rest_framework.renderers.JSONRenderer',)
+    # 'DEFAULT_RENDERER_CLASSES':
+    #     ('rest_framework.renderers.JSONRenderer',)
 }

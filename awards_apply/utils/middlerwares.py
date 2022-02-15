@@ -1,3 +1,5 @@
+import traceback
+
 from awards_apply.utils.const import not_catch_error, param_error
 from django.http import JsonResponse
 from django.utils.deprecation import MiddlewareMixin
@@ -11,6 +13,7 @@ class AppExceptionMiddleware(MiddlewareMixin):
     def process_exception(self, request, exception):
         self.exception = exception
         self.request = request
+        traceback.print_exc()
         if isinstance(exception, KeyError):
             response = JsonResponse(param_error(exception))
             return response

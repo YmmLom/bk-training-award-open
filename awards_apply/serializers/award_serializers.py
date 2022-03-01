@@ -34,7 +34,7 @@ class AwardsRecordSerializers(serializers.Serializer):
     application_attachments = serializers.ListField(required=False)
     approval_state = serializers.IntegerField(default=0, required=False)
     application_time = serializers.DateTimeField(format=TIME_FORMAT, required=False)
-    award_name = serializers.SerializerMethodField()
+    award_info = serializers.SerializerMethodField()
 
     def create(self, validated_data):  # 调用Serializer必须重写create方法
         if self.initial_data["is_draft"]:
@@ -54,6 +54,6 @@ class AwardsRecordSerializers(serializers.Serializer):
             })
         return record
 
-    def get_award_name(self, row):
-        res = Awards.objects.get(id=row.award_id)
-        return res.award_name
+    def get_award_info(self, row):
+        res = Awards.objects.filter(id=row.award_id).values().first()
+        return res if res else None
